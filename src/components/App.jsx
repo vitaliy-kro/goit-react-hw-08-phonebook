@@ -45,7 +45,7 @@ export class App extends Component {
   render() {
     const getVisibleContacts = this.visibleNumbers();
     return (
-      <Box>
+      <Box p="4">
         <Section title="Phonebook">
           <Phonebook addContact={this.handleAddContact}></Phonebook>
         </Section>
