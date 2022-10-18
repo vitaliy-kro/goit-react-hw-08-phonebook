@@ -3,11 +3,12 @@ import { Form, Field } from 'formik';
 
 export const ContactForm = styled(Form)`
   width: 300px;
-  padding: ${({ theme }) => theme.space[2]}px;
+  padding: ${({ theme }) => theme.space[3]}px;
   display: flex;
   flex-direction: column;
   border: ${({ theme }) => theme.borders.normal}
     ${({ theme }) => theme.colors.black};
+  border-radius: ${({ theme }) => theme.radii.normal};
   margin-bottom: ${({ theme }) => theme.space[4]}px;
 `;
 export const Label = styled.label`

@@ -8,4 +8,5 @@ export const Label = styled.label`
 export const Input = styled(Field)`
   padding: ${({ theme }) => theme.space[3]}px;
   margin-bottom: ${({ theme }) => theme.space[4]}px;
+  border-radius: ${({ theme }) => theme.radii.normal};
 `;
