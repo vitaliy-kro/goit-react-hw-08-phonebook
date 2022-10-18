@@ -4,7 +4,7 @@ import { Box } from './Box';
 import { Phonebook } from './Phonebook';
 import { Contacts } from './Contacts/Contacts';
 import { Filter } from './Filter/Filter';
-
+import { getItemsFromLocalStorage, setItemsToLocalStorage } from './helpers';
 export class App extends Component {
   state = {
     contacts: [
@@ -15,7 +15,17 @@ export class App extends Component {
     ],
     filter: '',
   };
+  componentDidMount() {
+    if (getItemsFromLocalStorage())
+      this.setState({ contacts: getItemsFromLocalStorage() });
+  }
+  componentDidUpdate(_, prevState) {
+    const { contacts } = this.state;
 
+    if (prevState.contacts.length !== contacts.length) {
+      setItemsToLocalStorage(contacts);
+    }
+  }
   handleAddContact = obj => {
     const previouslyAddedCheck = this.state.contacts.find(e => {
       return e.name.toLowerCase() === obj.name.toLowerCase();
