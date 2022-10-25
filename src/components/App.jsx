@@ -5,11 +5,9 @@ import { Phonebook } from './Phonebook';
 import { Contacts } from './Contacts/Contacts';
 import { Filter } from './Filter/Filter';
 import { useLocalStorage } from './helpers';
-import { Loader } from './Loader';
 
 export const App = () => {
   const [contacts, setContacts] = useLocalStorage('contacts', []);
-  const [isLoading, setIsLoading] = useState(false);
   const [filter, setFilter] = useState('');
 
   const handleAddContact = obj => {
@@ -47,7 +45,6 @@ export const App = () => {
           markup={getVisibleContacts}
           deleteContact={handleDeleteContact}
         ></Contacts>
-        {isLoading && <Loader></Loader>}
       </Section>
     </Box>
   );
