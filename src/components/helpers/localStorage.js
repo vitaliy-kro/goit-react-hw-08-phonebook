@@ -1,6 +1,13 @@
-const LOCALSTORAGE_KEY = 'Contacts';
-export const getItemsFromLocalStorage = (item, key = LOCALSTORAGE_KEY) =>
-  JSON.parse(localStorage.getItem(key, item));
+import { useState, useEffect } from 'react';
 
-export const setItemsToLocalStorage = (items, key = LOCALSTORAGE_KEY) =>
-  localStorage.setItem(key, JSON.stringify(items));
+export const useLocalStorage = (key, defaultValue) => {
+  const [state, setState] = useState(() => {
+    return JSON.parse(window.localStorage.getItem(key)) ?? defaultValue;
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem(key, JSON.stringify(state));
+  }, [key, state]);
+
+  return [state, setState];
+};

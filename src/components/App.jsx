@@ -1,29 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Section } from './Section';
 import { Box } from './Box';
 import { Phonebook } from './Phonebook';
 import { Contacts } from './Contacts/Contacts';
 import { Filter } from './Filter/Filter';
-import { getItemsFromLocalStorage, setItemsToLocalStorage } from './helpers';
+import { useLocalStorage } from './helpers';
 import { Loader } from './Loader';
 
 export const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useLocalStorage('contacts', []);
   const [isLoading, setIsLoading] = useState(false);
   const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    setIsLoading(true);
-    const itemsInLocalStorageCheck = getItemsFromLocalStorage().length > 0;
-    if (itemsInLocalStorageCheck) {
-      setContacts(getItemsFromLocalStorage());
-    }
-    setIsLoading(false);
-  }, []);
-
-  useEffect(() => {
-    setItemsToLocalStorage(contacts);
-  }, [contacts]);
 
   const handleAddContact = obj => {
     const previouslyAddedCheck = contacts.find(e => {
