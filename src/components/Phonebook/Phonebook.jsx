@@ -1,12 +1,21 @@
 import { Formik } from 'formik';
-import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
+import { getContacts } from 'redux/selectors';
 import { ContactForm, Label, Input, Button } from './Phonebook.styled';
-export const Phonebook = ({ addContact }) => {
-  const handleSubmit = ({ name, number }, { resetForm }) => {
-    const id = nanoid();
+export const Phonebook = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
-    addContact({ name, number, id });
+  const handleSubmit = ({ name, number }, { resetForm }) => {
+    const previouslyAddedCheck = contacts.find(contact => {
+      return contact.name.toLowerCase() === name.toLowerCase();
+    });
+    if (previouslyAddedCheck) {
+      return alert(`${previouslyAddedCheck.name} is already in contacts`);
+    }
+    dispatch(addContact(name, number));
+
     resetForm();
   };
 
@@ -36,8 +45,4 @@ export const Phonebook = ({ addContact }) => {
       </ContactForm>
     </Formik>
   );
-};
-
-Phonebook.propTypes = {
-  addContact: PropTypes.func.isRequired,
 };
