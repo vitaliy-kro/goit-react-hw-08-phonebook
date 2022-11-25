@@ -1,23 +1,23 @@
 import ContentLoader from 'react-content-loader';
 
-export const Loader = () => (
+export const Loader = props => (
   <ContentLoader
-    speed={2}
-    width={400}
-    height={460}
-    viewBox="0 0 400 460"
-    backgroundColor="#d1d1d1"
-    foregroundColor="#ecebeb"
+    width={700}
+    height={350}
+    viewBox="0 0 750 350"
+    backgroundColor="#f5f5f5"
+    foregroundColor="#dbdbdb"
+    {...props}
   >
-    <rect x="17" y="4" rx="0" ry="0" width="217" height="45" />
-    <rect x="199" y="26" rx="0" ry="0" width="2" height="0" />
-    <rect x="21" y="67" rx="0" ry="0" width="321" height="118" />
-    <rect x="17" y="214" rx="0" ry="0" width="203" height="37" />
-    <rect x="31" y="260" rx="0" ry="0" width="82" height="13" />
-    <rect x="21" y="284" rx="0" ry="0" width="199" height="22" />
-    <circle cx="28" cy="336" r="5" />
-    <circle cx="28" cy="358" r="5" />
-    <rect x="43" y="332" rx="0" ry="0" width="139" height="5" />
-    <rect x="44" y="355" rx="0" ry="0" width="139" height="5" />
+    <rect x="30" y="52" rx="6" ry="6" width="483" height="10" />
+    <circle cx="4" cy="55" r="4" />
+    <rect x="30" y="80" rx="6" ry="6" width="420" height="10" />
+    <circle cx="4" cy="83" r="4" />
+    <rect x="30" y="103" rx="6" ry="6" width="483" height="10" />
+    <circle cx="4" cy="106" r="4" />
+    <rect x="30" y="123" rx="6" ry="6" width="444" height="10" />
+    <circle cx="4" cy="126" r="4" />
+    <rect x="30" y="143" rx="6" ry="6" width="483" height="10" />
+    <circle cx="4" cy="146" r="4" />
   </ContentLoader>
 );

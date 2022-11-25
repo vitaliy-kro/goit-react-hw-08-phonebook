@@ -2,27 +2,24 @@ import { ContactsItem, Button } from './Contacts.styled';
 import { Box } from 'components/Box';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { getFilterStatus, getContacts } from 'redux/selectors';
-import { deleteContact } from 'redux/contactsSlice';
+import { selectVisibleContacts } from 'redux/selectors';
+import { deleteContact } from 'redux/operations';
 
 export const Contacts = () => {
-  const contacts = useSelector(getContacts);
-  const filterValue = useSelector(getFilterStatus);
-
+  const contacts = useSelector(selectVisibleContacts);
   const dispatch = useDispatch();
-  const contactsToMarkup = contacts.filter(({ name }) => {
-    const normalizedName = name.toLowerCase();
-    return normalizedName.includes(filterValue);
-  });
 
   return (
     <Box>
-      {contactsToMarkup.map(({ id, name, number }) => (
-        <ContactsItem key={id}>
-          {name}: {number}
-          <Button onClick={() => dispatch(deleteContact(id))}>Delete</Button>
-        </ContactsItem>
-      ))}
+      {contacts.map(({ id, name, phone }) => {
+        const handleDelete = () => dispatch(deleteContact(id));
+        return (
+          <ContactsItem key={id}>
+            {name}: {phone}
+            <Button onClick={handleDelete}>Delete</Button>
+          </ContactsItem>
+        );
+      })}
     </Box>
   );
 };
