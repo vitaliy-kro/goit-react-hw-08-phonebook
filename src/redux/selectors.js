@@ -7,11 +7,10 @@ export const selectError = state => state.contacts.error;
 
 export const selectVisibleContacts = createSelector(
   [selectContacts, selectFilterStatus],
-  (contacts, filter) => {
-    console.log('Calculating visible tasks');
+  (contacts, filterValue) => {
     return contacts.filter(({ name }) => {
       const normalizedName = name.toLowerCase();
-      return normalizedName.includes(filter);
+      return normalizedName.includes(filterValue);
     });
   }
 );
