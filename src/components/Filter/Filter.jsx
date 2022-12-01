@@ -1,17 +1,16 @@
-import { Box } from 'components/Box';
-import { Label, Input } from './Filter.styled';
+import { Box, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { setFilter } from 'redux/filterSlice';
+import { setFilter } from 'redux/contacts/filterSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();
 
   return (
     <Box display="flex" flexDirection="column" width="300px">
-      <Label htmlFor="search">Find contacts by name</Label>
-      <Input
+      <TextField
         name="search"
-        as="input"
+        variant="standard"
+        label="Find contacts by name"
         onChange={e => dispatch(setFilter(e.target.value))}
       />
     </Box>

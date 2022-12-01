@@ -1,5 +1,5 @@
 import ContentLoader from 'react-content-loader';
-
+import { Skeleton, Box } from '@mui/material';
 export const Loader = props => (
   <ContentLoader
     width={700}
@@ -21,3 +21,51 @@ export const Loader = props => (
     <circle cx="4" cy="146" r="4" />
   </ContentLoader>
 );
+
+export const ContactsLoader = () => {
+  return (
+    <>
+      <Box sx={{ py: 3 }}>
+        <Skeleton
+          animation="wave"
+          variant="text"
+          width={250}
+          height={90}
+          sx={{ mb: 2 }}
+        />
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Skeleton
+            animation="wave"
+            variant="rounded"
+            width={200}
+            height={40}
+          />
+          <Skeleton
+            animation="wave"
+            variant="rounded"
+            width={200}
+            height={40}
+            sx={{ ml: 1 }}
+          />
+          <Skeleton
+            animation="wave"
+            variant="rounded"
+            width={200}
+            height={30}
+            sx={{ ml: 1 }}
+          />
+        </Box>
+      </Box>
+      <Box sx={{ py: 3 }}>
+        <Skeleton
+          animation="wave"
+          variant="text"
+          width={250}
+          height={90}
+          sx={{ mb: 2 }}
+        />
+        <Skeleton animation="wave" variant="rounded" width={305} height={35} />
+      </Box>
+    </>
+  );
+};

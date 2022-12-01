@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { Box } from 'components/Box';
-import { Title } from './Section.styled';
+import { Typography, Box } from '@mui/material';
 export const Section = ({ title, children }) => {
   return (
-    <Box>
-      <Title>{title}</Title>
+    <Box sx={{ py: 3 }}>
+      <Typography component="h1" variant="h3" sx={{ mb: 2 }}>
+        {title}
+      </Typography>
       {children}
     </Box>
   );
