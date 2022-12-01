@@ -1,16 +1,22 @@
 import { useAuth } from 'hooks';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import { Box, Typography } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { Link } from 'components/Link';
+
 export const WelcomeMessage = () => {
+  const matches = useMediaQuery('(max-width:750px)');
   const { isLoggedIn, user } = useAuth();
+
   return (
     <Box
       sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <ContactPhoneIcon sx={{ fontSize: 70, mr: 2 }} />
-        <Typography component="h1" variant="h1">
+        <ContactPhoneIcon
+          sx={matches ? { fontSize: 40, mr: 2 } : { fontSize: 70, mr: 2 }}
+        />
+        <Typography component="h1" variant={matches ? 'h3' : 'h1'}>
           Phonebook
         </Typography>
       </Box>

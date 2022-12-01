@@ -5,19 +5,20 @@ import { Box } from '@mui/material';
 import { Navigation } from 'components/Navigation';
 import { AuthNav } from 'components/AuthNav';
 import { UserMenu } from 'components/UserMenu';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export const Header = () => {
   const { isLoggedIn } = useAuth();
+  const matches = useMediaQuery('(max-width:750px)');
 
   return (
     <AppBar position="static">
       <Container
-        maxWidth="l"
+        maxWidth={matches ? 's' : 'l'}
         sx={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
-          py: 2,
         }}
       >
         <Navigation />

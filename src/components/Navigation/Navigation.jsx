@@ -7,11 +7,11 @@ export const Navigation = () => {
 
   return (
     <Box component="nav" sx={{ display: 'flex' }}>
-      <Link sx={{ color: 'white', display: 'block' }} to="/">
+      <Link sx={{ color: 'white', display: 'block', py: 2 }} to="/">
         Home
       </Link>
       {isLoggedIn && (
-        <Link sx={{ color: 'white', display: 'block' }} to="/contacts">
+        <Link sx={{ color: 'white', display: 'block', py: 2 }} to="/contacts">
           Contacts
         </Link>
       )}
