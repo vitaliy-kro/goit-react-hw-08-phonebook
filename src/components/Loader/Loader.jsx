@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
 import { Skeleton, Box } from '@mui/material';
-export const Loader = props => (
+export const ContactsInfoLoader = props => (
   <ContentLoader
     width={700}
     height={350}
@@ -22,7 +22,7 @@ export const Loader = props => (
   </ContentLoader>
 );
 
-export const ContactsLoader = () => {
+const ContactsLoader = () => {
   return (
     <>
       <Box sx={{ py: 3 }}>
@@ -68,4 +68,138 @@ export const ContactsLoader = () => {
       </Box>
     </>
   );
+};
+
+const HomeSkeleton = () => {
+  return (
+    <>
+      <Box
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <Skeleton animation="wave" variant="rounded" width={70} height={70} />
+        <Skeleton
+          animation="wave"
+          variant="text"
+          width={500}
+          height={130}
+          sx={{ ml: 2 }}
+        />
+      </Box>
+      <Box
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <Skeleton animation="wave" variant="rounded" width={100} height={45} />
+        <Skeleton
+          animation="wave"
+          variant="rounded"
+          width={100}
+          height={45}
+          sx={{ ml: 5 }}
+        />
+      </Box>
+    </>
+  );
+};
+
+const SignInSkeleton = () => {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        py: 2,
+      }}
+    >
+      <Skeleton
+        animation="wave"
+        variant="circular"
+        width={40}
+        height={40}
+        sx={{ mb: 1 }}
+      />
+      <Skeleton
+        animation="wave"
+        variant="text"
+        width={80}
+        height={40}
+        sx={{ mb: 2 }}
+      />
+      <Skeleton
+        animation="wave"
+        variant="rounded"
+        width={460}
+        height={50}
+        sx={{ mb: 2 }}
+      />
+      <Skeleton
+        animation="wave"
+        variant="rounded"
+        width={460}
+        height={50}
+        sx={{ mb: 3 }}
+      />
+      <Skeleton animation="wave" variant="rounded" width={460} height={40} />
+    </Box>
+  );
+};
+
+const SignUpSkeleton = () => {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        py: 2,
+      }}
+    >
+      <Skeleton
+        animation="wave"
+        variant="circular"
+        width={40}
+        height={40}
+        sx={{ mb: 1 }}
+      />
+      <Skeleton
+        animation="wave"
+        variant="text"
+        width={80}
+        height={40}
+        sx={{ mb: 2 }}
+      />
+      <Skeleton
+        animation="wave"
+        variant="rounded"
+        width={700}
+        height={50}
+        sx={{ mb: 2 }}
+      />
+      <Skeleton
+        animation="wave"
+        variant="rounded"
+        width={700}
+        height={50}
+        sx={{ mb: 3 }}
+      />
+      <Skeleton animation="wave" variant="rounded" width={700} height={40} />
+    </Box>
+  );
+};
+
+export const Loader = ({ location }) => {
+  switch (location) {
+    case '/':
+      return <HomeSkeleton />;
+    case '/contacts':
+      return <ContactsLoader />;
+    case '/login':
+      return <SignInSkeleton />;
+    case '/register':
+      return <SignUpSkeleton />;
+    default:
+      return;
+  }
 };

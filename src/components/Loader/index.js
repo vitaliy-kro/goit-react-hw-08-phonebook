@@ -1,1 +1,1 @@
-export { Loader, ContactsLoader } from './Loader';
+export { Loader, ContactsInfoLoader } from './Loader';

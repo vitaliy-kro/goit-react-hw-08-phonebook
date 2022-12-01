@@ -2,7 +2,7 @@ import { Avatar, Typography, Box, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { logout } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
-import { stringAvatar } from 'helpers/avatar/avatar';
+import { stringAvatar } from 'helpers/chooseAvatarColorByName';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();

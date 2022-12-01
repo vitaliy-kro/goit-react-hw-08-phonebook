@@ -4,7 +4,7 @@ import { useAuth } from 'hooks';
 import { Box } from '@mui/material';
 import { Navigation } from 'components/Navigation';
 import { AuthNav } from 'components/AuthNav';
-import { UserMenu } from 'components/UserMenu/UserMenu';
+import { UserMenu } from 'components/UserMenu';
 
 export const Header = () => {
   const { isLoggedIn } = useAuth();

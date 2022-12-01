@@ -21,7 +21,12 @@ export const RegisterForm = () => {
   });
   return (
     <Box
-      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        py: 2,
+      }}
     >
       <Avatar sx={{ mb: 1, bgcolor: 'secondary.main' }}>
         <LockOutlinedIcon />

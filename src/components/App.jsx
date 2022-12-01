@@ -50,6 +50,7 @@ export const App = () => {
             />
           }
         />
+        <Route path="*" index element={<HomePage />} />
       </Route>
     </Routes>
   );
