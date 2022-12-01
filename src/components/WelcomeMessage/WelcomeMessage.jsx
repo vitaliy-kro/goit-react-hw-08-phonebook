@@ -22,7 +22,7 @@ export const WelcomeMessage = () => {
       </Box>
 
       {isLoggedIn ? (
-        <Typography component="h2" variant="h3">
+        <Typography component="h2" variant={matches ? 'h5' : 'h3'}>
           Welcome,{user.name}
         </Typography>
       ) : (
