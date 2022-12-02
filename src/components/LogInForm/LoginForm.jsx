@@ -7,19 +7,23 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { useFormik } from 'formik';
-
 import { login } from 'redux/auth/operations';
+import { LoginSchema } from 'helpers/validationSchemas/logInValidation';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: { email: '', password: '' },
+    validationSchema: LoginSchema,
     onSubmit: (userInfo, { resetForm }) => {
       dispatch(login(userInfo));
       resetForm();
     },
+    validateOnChange: false,
+    validateOnBlur: false,
   });
-
+  const emailError = formik.errors.email;
+  const passwordError = formik.errors.password;
   return (
     <Box
       sx={{
@@ -35,10 +39,12 @@ export const LoginForm = () => {
       <Typography component="h1" variant="h5" sx={{ mb: 3 }}>
         Sign in
       </Typography>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} noValidate>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
+              error={Boolean(emailError)}
+              helperText={emailError}
               fullWidth
               required
               id="email"
@@ -50,6 +56,8 @@ export const LoginForm = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              error={Boolean(passwordError)}
+              helperText={passwordError}
               fullWidth
               required
               id="password"

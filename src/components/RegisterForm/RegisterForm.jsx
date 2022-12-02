@@ -6,19 +6,26 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-
 import { useFormik } from 'formik';
 import { register } from 'redux/auth/operations';
+import { SignSchema } from 'helpers/validationSchemas/signInValidation';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: { username: '', email: '', password: '' },
+    validationSchema: SignSchema,
     onSubmit: ({ username: name, email, password }, { resetForm }) => {
       dispatch(register({ name, email, password }));
       resetForm();
     },
+    validateOnChange: false,
+    validateOnBlur: false,
   });
+  const nameError = formik.errors.username;
+  const emailError = formik.errors.email;
+  const passwordError = formik.errors.password;
+
   return (
     <Box
       sx={{
@@ -34,10 +41,12 @@ export const RegisterForm = () => {
       <Typography component="h1" variant="h5" sx={{ mb: 3 }}>
         Sign up
       </Typography>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} noValidate>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
+              error={Boolean(nameError)}
+              helperText={nameError}
               autoComplete="given-name"
               name="username"
               required
@@ -51,6 +60,8 @@ export const RegisterForm = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              error={Boolean(emailError)}
+              helperText={emailError}
               required
               fullWidth
               id="email"
@@ -63,6 +74,8 @@ export const RegisterForm = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              error={Boolean(passwordError)}
+              helperText={passwordError}
               required
               fullWidth
               name="password"
