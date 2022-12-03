@@ -17,7 +17,11 @@ export const App = () => {
   const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch(refreshUser());
+    const refresh = dispatch(refreshUser());
+
+    return () => {
+      refresh.abort();
+    };
   }, [dispatch]);
 
   return isRefreshing ? (

@@ -40,7 +40,11 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, state => {
+      .addCase(refreshUser.rejected, (state, action) => {
+        if (action.payload === 'Request failed with status code 401') {
+          state.user = { name: null, email: null };
+          state.token = null;
+        }
         state.isRefreshing = false;
       });
   },

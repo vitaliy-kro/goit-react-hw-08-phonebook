@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { useFormik } from 'formik';
+import { Link as RouterLink } from 'react-router-dom';
+import { Link } from '@mui/material';
 import { register } from 'redux/auth/operations';
 import { SignSchema } from 'helpers/validationSchemas/signInValidation';
 
@@ -88,10 +90,18 @@ export const RegisterForm = () => {
             />
           </Grid>
         </Grid>
-        <Button sx={{ mt: 3 }} type="submit" fullWidth variant="contained">
+        <Button
+          sx={{ mt: 3, mb: 1 }}
+          type="submit"
+          fullWidth
+          variant="contained"
+        >
           Register
         </Button>
       </form>
+      <Link to="/login" component={RouterLink} variant="body2">
+        Already have an account? Sign in
+      </Link>
     </Box>
   );
 };

@@ -8,6 +8,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { useFormik } from 'formik';
 import { login } from 'redux/auth/operations';
+import { Link as RouterLink } from 'react-router-dom';
+import { Link } from '@mui/material';
 import { LoginSchema } from 'helpers/validationSchemas/logInValidation';
 
 export const LoginForm = () => {
@@ -74,11 +76,14 @@ export const LoginForm = () => {
           variant="contained"
           fullWidth
           type="submit"
-          sx={{ mt: 3 }}
+          sx={{ mt: 3, mb: 1 }}
         >
           Log In
         </Button>
       </form>
+      <Link to="/register" component={RouterLink} variant="body2">
+        Don't have an account? Sign Up
+      </Link>
     </Box>
   );
 };
