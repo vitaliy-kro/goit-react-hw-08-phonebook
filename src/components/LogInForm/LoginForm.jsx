@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { notificationError } from 'helpers/notification';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -17,9 +18,9 @@ export const LoginForm = () => {
   const formik = useFormik({
     initialValues: { email: '', password: '' },
     validationSchema: LoginSchema,
-    onSubmit: (userInfo, { resetForm }) => {
-      dispatch(login(userInfo));
-      resetForm();
+    onSubmit: async (userInfo, { resetForm }) => {
+      const fetch = await dispatch(login(userInfo));
+      fetch.error.message === 'Rejected' ? notificationError() : resetForm();
     },
     validateOnChange: false,
     validateOnBlur: false,

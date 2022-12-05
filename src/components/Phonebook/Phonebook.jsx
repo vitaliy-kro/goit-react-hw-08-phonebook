@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/contacts/selectors';
 import { addPhoneSchema } from 'helpers/validationSchemas/addContactValidation';
+import { notificationExcistContact } from 'helpers/notification';
 
 export const Phonebook = () => {
   const dispatch = useDispatch();
@@ -15,11 +16,10 @@ export const Phonebook = () => {
       const previouslyAddedCheck = contacts.find(contact => {
         return contact.name.toLowerCase() === name.toLowerCase();
       });
-      if (previouslyAddedCheck) {
-        return alert(`${previouslyAddedCheck.name} is already in contacts`);
-      }
-      dispatch(addContact({ name, number }));
+      if (previouslyAddedCheck)
+        return notificationExcistContact(previouslyAddedCheck.name);
 
+      dispatch(addContact({ name, number }));
       resetForm();
     },
     validateOnChange: false,
