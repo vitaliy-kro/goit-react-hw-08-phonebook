@@ -10,14 +10,14 @@ import { useFormik } from 'formik';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link } from '@mui/material';
 import { register } from 'redux/auth/operations';
-import { SignSchema } from 'helpers/validationSchemas/signInValidation';
+import { signInSchema } from 'helpers/validationSchemas';
 import { notificationError } from 'helpers/notification';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: { username: '', email: '', password: '' },
-    validationSchema: SignSchema,
+    validationSchema: signInSchema,
     onSubmit: async ({ username: name, email, password }, { resetForm }) => {
       const fetch = await dispatch(register({ name, email, password }));
       fetch.error.message === 'Rejected' ? notificationError() : resetForm();

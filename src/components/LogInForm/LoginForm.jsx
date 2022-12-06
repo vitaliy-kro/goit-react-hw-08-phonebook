@@ -11,13 +11,13 @@ import { useFormik } from 'formik';
 import { login } from 'redux/auth/operations';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link } from '@mui/material';
-import { LoginSchema } from 'helpers/validationSchemas/logInValidation';
+import { logInSchema } from 'helpers/validationSchemas';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: { email: '', password: '' },
-    validationSchema: LoginSchema,
+    validationSchema: logInSchema,
     onSubmit: async (userInfo, { resetForm }) => {
       const fetch = await dispatch(login(userInfo));
       fetch.error.message === 'Rejected' ? notificationError() : resetForm();

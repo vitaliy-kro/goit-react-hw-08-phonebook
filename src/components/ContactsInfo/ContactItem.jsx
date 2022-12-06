@@ -1,18 +1,26 @@
-import { Typography, Box, Button, TextField } from '@mui/material';
+import {
+  Typography,
+  Box,
+  Button,
+  TextField,
+  InputAdornment,
+} from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { deleteContact, editContact } from 'redux/contacts/operations';
-import { addPhoneSchema } from 'helpers/validationSchemas/addContactValidation';
+import { editContactSchema } from 'helpers/validationSchemas';
 
 export const ContactItem = ({ id, name, number }) => {
   const [isEdit, setIsEdit] = useState(false);
   const dispatch = useDispatch();
+  const matches = useMediaQuery('(max-width:750px)');
 
   const formik = useFormik({
     initialValues: { name, number },
-    validationSchema: addPhoneSchema,
+    validationSchema: editContactSchema,
     onSubmit: ({ name, number }, { resetForm }) => {
       dispatch(editContact({ id, name, number }));
       setIsEdit(false);
@@ -31,13 +39,12 @@ export const ContactItem = ({ id, name, number }) => {
       sx={{ display: 'flex', alignItems: 'center', mt: 1 }}
       key={id}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <PhoneIcon />
+      <Box sx={matches ? {} : { display: 'flex', alignItems: 'center' }}>
         {isEdit ? (
           <Box
             component="form"
             onSubmit={formik.handleSubmit}
-            sx={{ display: 'flex', alignItems: 'baseline' }}
+            sx={matches ? {} : { display: 'flex', alignItems: 'baseline' }}
             noValidate
           >
             <TextField
@@ -49,15 +56,24 @@ export const ContactItem = ({ id, name, number }) => {
               onChange={formik.handleChange}
               variant="standard"
               size="small"
+              sx={matches ? { width: '100%' } : {}}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PhoneIcon />
+                  </InputAdornment>
+                ),
+                endAdornment: <InputAdornment position="end">:</InputAdornment>,
+              }}
               required
             />
-            :
+
             <TextField
               type="tel"
               name="number"
               error={Boolean(numberError)}
               helperText={numberError}
-              sx={{ ml: 1 }}
+              sx={matches ? { width: '100%', mt: 1 } : { ml: 1 }}
               value={formik.values.number}
               onChange={formik.handleChange}
               variant="standard"
@@ -65,7 +81,7 @@ export const ContactItem = ({ id, name, number }) => {
               required
             />
             <Button
-              sx={{ ml: 1 }}
+              sx={matches ? { display: 'block', width: '100%' } : { ml: 1 }}
               type="submit"
               onClick={() => setIsEdit(true)}
             >
@@ -73,7 +89,11 @@ export const ContactItem = ({ id, name, number }) => {
             </Button>
             <Button
               type="button"
-              sx={{ color: 'red' }}
+              sx={
+                matches
+                  ? { display: 'block', width: '100%', color: 'red' }
+                  : { color: 'red' }
+              }
               onClick={() => setIsEdit(false)}
             >
               Cancel
@@ -81,16 +101,26 @@ export const ContactItem = ({ id, name, number }) => {
           </Box>
         ) : (
           <>
-            <Typography component="p" variant="p" sx={{ ml: 1 }}>
-              {name}:
-            </Typography>
-            <Typography component="p" sx={{ ml: 1 }}>
-              {number}
-            </Typography>
-            <Button sx={{ ml: 1 }} onClick={() => setIsEdit(true)}>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <PhoneIcon />
+              <Typography component="p" variant="p" sx={{ ml: 1 }}>
+                {name}:
+              </Typography>
+
+              <Typography component="p" sx={{ ml: 1 }}>
+                {number}
+              </Typography>
+            </Box>
+            <Button
+              sx={matches ? { ml: 1, width: '45%' } : { ml: 1 }}
+              onClick={() => setIsEdit(true)}
+            >
               Edit
             </Button>
-            <Button sx={{ color: 'red' }} onClick={handleDelete}>
+            <Button
+              sx={matches ? { color: 'red', width: '45%' } : { color: 'red' }}
+              onClick={handleDelete}
+            >
               Delete
             </Button>
           </>

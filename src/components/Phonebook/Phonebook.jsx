@@ -3,7 +3,7 @@ import { TextField, Button, Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/contacts/selectors';
-import { addPhoneSchema } from 'helpers/validationSchemas/addContactValidation';
+import { addContactSchema } from 'helpers/validationSchemas';
 import { notificationExcistContact } from 'helpers/notification';
 
 export const Phonebook = () => {
@@ -11,7 +11,7 @@ export const Phonebook = () => {
   const contacts = useSelector(selectContacts);
   const formik = useFormik({
     initialValues: { name: '', number: '' },
-    validationSchema: addPhoneSchema,
+    validationSchema: addContactSchema,
     onSubmit: ({ name, number }, { resetForm }) => {
       const previouslyAddedCheck = contacts.find(contact => {
         return contact.name.toLowerCase() === name.toLowerCase();
