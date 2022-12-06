@@ -1,0 +1,1 @@
+export { LastAddedContacts } from './LastAddedContacts';

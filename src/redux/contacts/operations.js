@@ -5,7 +5,9 @@ export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/contacts');
+      const response = await axios.get('/contacts', {
+        signal: thunkAPI.signal,
+      });
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

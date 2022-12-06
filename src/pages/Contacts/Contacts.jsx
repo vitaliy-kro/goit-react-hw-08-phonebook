@@ -15,7 +15,11 @@ const Contacts = () => {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    const fetch = dispatch(fetchContacts());
+
+    return () => {
+      fetch.abort();
+    };
   }, [dispatch]);
 
   return (
