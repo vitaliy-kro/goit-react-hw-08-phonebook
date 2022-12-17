@@ -1,13 +1,5 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import {
-  persistStore,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
+import { configureStore } from '@reduxjs/toolkit';
+import { persistStore } from 'redux-persist';
 import { contactsReducer } from 'redux/contacts/contactsSlice';
 import { filterReducer } from 'redux/contacts/filterSlice';
 import { persistedAuthReducer } from './auth/slice';
