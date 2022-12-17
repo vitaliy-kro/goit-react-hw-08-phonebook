@@ -13,13 +13,13 @@ import { filterReducer } from 'redux/contacts/filterSlice';
 import { persistedAuthReducer } from './auth/slice';
 import { useDispatch } from 'react-redux';
 
-const middleware = [
-  ...getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
-];
+// const middleware = [
+//   ...getDefaultMiddleware({
+//     serializableCheck: {
+//       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//     },
+//   }),
+// ];
 
 export const store = configureStore({
   reducer: {
