@@ -6,9 +6,6 @@ import {
   editContact,
 } from './operations';
 import { ContactsState } from './interfaces';
-// const extraActions = [fetchContacts, addContact, deleteContact, editContact];
-
-// const getActions = (type: IType) =>[ ...extraActions].map(action => action[type]);
 
 const initialState: ContactsState = {
   items: [],
